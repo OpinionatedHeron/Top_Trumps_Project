@@ -1,0 +1,88 @@
+# USER CARD GENERATION#
+import random
+# print(input('Are you ready? Yes / No '))
+player_card = random.randint(1, 151)
+print('Your chosen card is card {}'.format(player_card))
+import requests
+pokemon_number = player_card
+url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(player_card)
+response = requests.get(url)
+#print(response)
+player_pokemon = response.json()
+print('Your Pokemon is ' + player_pokemon['name'])
+print('Height: ' + str(player_pokemon['height']))
+print('Weight: ' + str(player_pokemon['weight']))
+print('Base Experience: ' + str(player_pokemon['base_experience']))
+print('Pokemon Order OF POWERRR: ' + str(player_pokemon['order']))
+pokemon_stats = (player_pokemon['stats'])
+#print(pokemon_stats)
+#stats_counter = 0
+#for stat in pokemon_stats:
+#    stats_counter = stats_counter + 1
+#    print('Stat {}: '.format(stats_counter))
+#    print('Base Stat: ' + str(stat['base_stat']))
+#    print('Effort: ' + str(stat['effort']))
+
+# COMPUTER CARD GENERATION#
+computer_card = random.randint(1,151)
+print('Your opponent drew {}'.format(computer_card))
+oppoent_pokemon_number = computer_card
+url = 'https://pokeapi.co/api/v2/pokemon/{}/'.format(computer_card)
+response = requests.get(url)
+#print(response)
+opponent_pokemon = response.json()
+print('Your Opponent\'s Pokemon is ' + opponent_pokemon['name'])
+#print('Height: ' + str(pokemon['height']))
+#print('Weight: ' + str(pokemon['weight']))
+#print('Base experience: ' + str(pokemon['base_experience']))
+#print('Pokemon Order OF POWERRR: ' + str(pokemon['order']))
+#pokemon_stats = (pokemon['stats'])
+#stats_counter = 0
+#for stat in pokemon_stats:
+#    stats_counter = stats_counter + 1
+#    print('Stat {}: '.format(stats_counter))
+#    print('Base Stat: ' + str(stat['base_stat']))
+#    print('Effort: ' + str(stat['effort']))
+
+#GAME PLAY AND RULES#
+user_stat_choice = input('What stat do you want to submit? ')
+print('You chose {} '.format(user_stat_choice))
+print('Your Opponent\'s Pokemon\'s stats are: ')
+print('Height: ' + str(opponent_pokemon['height']))
+print('Weight: ' + str(opponent_pokemon['weight']))
+print('Base Experience: ' + str(opponent_pokemon['base_experience']))
+print('Pokemon Order OF POWERRR: ' + str(opponent_pokemon['order']))
+if user_stat_choice == 'Height':
+    if player_pokemon['height'] >= opponent_pokemon['height']:
+        print('Your height is ' + str(player_pokemon['height']))
+        print('Your opponent\'s height is ' + str(opponent_pokemon['height']))
+        print('Your height is higher. You win!')
+    else:
+        print('Your height is lower. You lose')
+elif user_stat_choice == 'Weight':
+    if player_pokemon['weight'] >= opponent_pokemon['weight']:
+        print('Your weight is ' + str(player_pokemon['weight']))
+        print('Your opponent\'s weight is ' + str(opponent_pokemon['weight']))
+        print('Your weight is higher. You win!')
+    else:
+        print('Your weight is lower. You lose')
+elif user_stat_choice == 'Base Experience':
+    if player_pokemon['base_experience'] >= opponent_pokemon['base_experience']:
+        print('Your Base Experience is ' + str(player_pokemon['base_experience']))
+        print('Your opponent\'s Base Experience is ' + str(opponent_pokemon['base_experience']))
+        print('Your Base Experience is higher. You win!')
+    else:
+        print('Your Base Experience is lower. You lose')
+elif user_stat_choice == 'Order':
+    if player_pokemon['order'] >= opponent_pokemon['order']:
+        print('Your order is ' + str(player_pokemon['order']))
+        print('Your opponent\'s Order of Powerrr is ' + str(opponent_pokemon['order']))
+        print('Your Order of Powerrr is higher. You win!')
+    else:
+        print('Your Order of Powerrr is lower. You lose')
+else:
+    print('NULL ROUND. Unable to generate a comparison with your input.')
+    print('PLEASE NOTE: The answers are case sensitive. \nPlease input: Height, Weight, Base Experience, or Order as your options. \nThere is not need to enter a spacce before typing')
+user_stat_choice = input('What stat do you want to submit? ')
+
+
