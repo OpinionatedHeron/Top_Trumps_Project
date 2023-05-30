@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>top_trumps_v1.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #6897bb;}
+.s4 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+top_trumps_v1.py</font>
+</center></td></tr></table>
+<pre><span class="s0"># USER CARD GENERATION#</span>
+<span class="s2">import </span><span class="s1">random</span>
+<span class="s0"># print(input('Are you ready? Yes / No '))</span>
+<span class="s1">player_card = random.randint(</span><span class="s3">1</span><span class="s2">, </span><span class="s3">151</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s4">'Your chosen card is card {}'</span><span class="s1">.format(player_card))</span>
+<span class="s2">import </span><span class="s1">requests</span>
+<span class="s1">pokemon_number = player_card</span>
+<span class="s1">url = </span><span class="s4">'https://pokeapi.co/api/v2/pokemon/{}/'</span><span class="s1">.format(player_card)</span>
+<span class="s1">response = requests.get(url)</span>
+<span class="s0">#print(response)</span>
+<span class="s1">player_pokemon = response.json()</span>
+<span class="s1">print(</span><span class="s4">'Your Pokemon is ' </span><span class="s1">+ player_pokemon[</span><span class="s4">'name'</span><span class="s1">])</span>
+<span class="s1">print(</span><span class="s4">'Height: ' </span><span class="s1">+ str(player_pokemon[</span><span class="s4">'height'</span><span class="s1">]))</span>
+<span class="s1">print(</span><span class="s4">'Weight: ' </span><span class="s1">+ str(player_pokemon[</span><span class="s4">'weight'</span><span class="s1">]))</span>
+<span class="s1">print(</span><span class="s4">'Base Experience: ' </span><span class="s1">+ str(player_pokemon[</span><span class="s4">'base_experience'</span><span class="s1">]))</span>
+<span class="s1">print(</span><span class="s4">'Pokemon Order OF POWERRR: ' </span><span class="s1">+ str(player_pokemon[</span><span class="s4">'order'</span><span class="s1">]))</span>
+<span class="s1">pokemon_stats = (player_pokemon[</span><span class="s4">'stats'</span><span class="s1">])</span>
+<span class="s0">#print(pokemon_stats)</span>
+<span class="s0">#stats_counter = 0</span>
+<span class="s0">#for stat in pokemon_stats:</span>
+<span class="s0">#    stats_counter = stats_counter + 1</span>
+<span class="s0">#    print('Stat {}: '.format(stats_counter))</span>
+<span class="s0">#    print('Base Stat: ' + str(stat['base_stat']))</span>
+<span class="s0">#    print('Effort: ' + str(stat['effort']))</span>
+
+<span class="s0"># COMPUTER CARD GENERATION#</span>
+<span class="s1">computer_card = random.randint(</span><span class="s3">1</span><span class="s2">,</span><span class="s3">151</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s4">'Your opponent drew {}'</span><span class="s1">.format(computer_card))</span>
+<span class="s1">oppoent_pokemon_number = computer_card</span>
+<span class="s1">url = </span><span class="s4">'https://pokeapi.co/api/v2/pokemon/{}/'</span><span class="s1">.format(computer_card)</span>
+<span class="s1">response = requests.get(url)</span>
+<span class="s0">#print(response)</span>
+<span class="s1">opponent_pokemon = response.json()</span>
+<span class="s1">print(</span><span class="s4">'Your Opponent</span><span class="s2">\'</span><span class="s4">s Pokemon is ' </span><span class="s1">+ opponent_pokemon[</span><span class="s4">'name'</span><span class="s1">])</span>
+<span class="s0">#print('Height: ' + str(pokemon['height']))</span>
+<span class="s0">#print('Weight: ' + str(pokemon['weight']))</span>
+<span class="s0">#print('Base experience: ' + str(pokemon['base_experience']))</span>
+<span class="s0">#print('Pokemon Order OF POWERRR: ' + str(pokemon['order']))</span>
+<span class="s0">#pokemon_stats = (pokemon['stats'])</span>
+<span class="s0">#stats_counter = 0</span>
+<span class="s0">#for stat in pokemon_stats:</span>
+<span class="s0">#    stats_counter = stats_counter + 1</span>
+<span class="s0">#    print('Stat {}: '.format(stats_counter))</span>
+<span class="s0">#    print('Base Stat: ' + str(stat['base_stat']))</span>
+<span class="s0">#    print('Effort: ' + str(stat['effort']))</span>
+
+<span class="s0">#GAME PLAY AND RULES#</span>
+<span class="s1">user_stat_choice = input(</span><span class="s4">'What stat do you want to submit? '</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s4">'You chose {} '</span><span class="s1">.format(user_stat_choice))</span>
+<span class="s1">print(</span><span class="s4">'Your Opponent</span><span class="s2">\'</span><span class="s4">s Pokemon</span><span class="s2">\'</span><span class="s4">s stats are: '</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s4">'Height: ' </span><span class="s1">+ str(opponent_pokemon[</span><span class="s4">'height'</span><span class="s1">]))</span>
+<span class="s1">print(</span><span class="s4">'Weight: ' </span><span class="s1">+ str(opponent_pokemon[</span><span class="s4">'weight'</span><span class="s1">]))</span>
+<span class="s1">print(</span><span class="s4">'Base Experience: ' </span><span class="s1">+ str(opponent_pokemon[</span><span class="s4">'base_experience'</span><span class="s1">]))</span>
+<span class="s1">print(</span><span class="s4">'Pokemon Order OF POWERRR: ' </span><span class="s1">+ str(opponent_pokemon[</span><span class="s4">'order'</span><span class="s1">]))</span>
+<span class="s2">if </span><span class="s1">user_stat_choice == </span><span class="s4">'Height'</span><span class="s1">:</span>
+    <span class="s2">if </span><span class="s1">player_pokemon[</span><span class="s4">'height'</span><span class="s1">] &gt;= opponent_pokemon[</span><span class="s4">'height'</span><span class="s1">]:</span>
+        <span class="s1">print(</span><span class="s4">'Your height is ' </span><span class="s1">+ str(player_pokemon[</span><span class="s4">'height'</span><span class="s1">]))</span>
+        <span class="s1">print(</span><span class="s4">'Your opponent</span><span class="s2">\'</span><span class="s4">s height is ' </span><span class="s1">+ str(opponent_pokemon[</span><span class="s4">'height'</span><span class="s1">]))</span>
+        <span class="s1">print(</span><span class="s4">'Your height is higher. You win!'</span><span class="s1">)</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s4">'Your height is lower. You lose'</span><span class="s1">)</span>
+<span class="s2">elif </span><span class="s1">user_stat_choice == </span><span class="s4">'Weight'</span><span class="s1">:</span>
+    <span class="s2">if </span><span class="s1">player_pokemon[</span><span class="s4">'weight'</span><span class="s1">] &gt;= opponent_pokemon[</span><span class="s4">'weight'</span><span class="s1">]:</span>
+        <span class="s1">print(</span><span class="s4">'Your weight is ' </span><span class="s1">+ str(player_pokemon[</span><span class="s4">'weight'</span><span class="s1">]))</span>
+        <span class="s1">print(</span><span class="s4">'Your opponent</span><span class="s2">\'</span><span class="s4">s weight is ' </span><span class="s1">+ str(opponent_pokemon[</span><span class="s4">'weight'</span><span class="s1">]))</span>
+        <span class="s1">print(</span><span class="s4">'Your weight is higher. You win!'</span><span class="s1">)</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s4">'Your weight is lower. You lose'</span><span class="s1">)</span>
+<span class="s2">elif </span><span class="s1">user_stat_choice == </span><span class="s4">'Base Experience'</span><span class="s1">:</span>
+    <span class="s2">if </span><span class="s1">player_pokemon[</span><span class="s4">'base_experience'</span><span class="s1">] &gt;= opponent_pokemon[</span><span class="s4">'base_experience'</span><span class="s1">]:</span>
+        <span class="s1">print(</span><span class="s4">'Your Base Experience is ' </span><span class="s1">+ str(player_pokemon[</span><span class="s4">'base_experience'</span><span class="s1">]))</span>
+        <span class="s1">print(</span><span class="s4">'Your opponent</span><span class="s2">\'</span><span class="s4">s Base Experience is ' </span><span class="s1">+ str(opponent_pokemon[</span><span class="s4">'base_experience'</span><span class="s1">]))</span>
+        <span class="s1">print(</span><span class="s4">'Your Base Experience is higher. You win!'</span><span class="s1">)</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s4">'Your Base Experience is lower. You lose'</span><span class="s1">)</span>
+<span class="s2">elif </span><span class="s1">user_stat_choice == </span><span class="s4">'Order'</span><span class="s1">:</span>
+    <span class="s2">if </span><span class="s1">player_pokemon[</span><span class="s4">'order'</span><span class="s1">] &gt;= opponent_pokemon[</span><span class="s4">'order'</span><span class="s1">]:</span>
+        <span class="s1">print(</span><span class="s4">'Your order is ' </span><span class="s1">+ str(player_pokemon[</span><span class="s4">'order'</span><span class="s1">]))</span>
+        <span class="s1">print(</span><span class="s4">'Your opponent</span><span class="s2">\'</span><span class="s4">s Order of Powerrr is ' </span><span class="s1">+ str(opponent_pokemon[</span><span class="s4">'order'</span><span class="s1">]))</span>
+        <span class="s1">print(</span><span class="s4">'Your Order of Powerrr is higher. You win!'</span><span class="s1">)</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s4">'Your Order of Powerrr is lower. You lose'</span><span class="s1">)</span>
+<span class="s2">else</span><span class="s1">:</span>
+    <span class="s1">print(</span><span class="s4">'NULL ROUND. Unable to generate a comparison with your input.'</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s4">'PLEASE NOTE: The answers are case sensitive. </span><span class="s2">\n</span><span class="s4">Please input: Height, Weight, Base Experience, or Order as your options. </span><span class="s2">\n</span><span class="s4">There is not need to enter a spacce before typing'</span><span class="s1">)</span>
+<span class="s1">user_stat_choice = input(</span><span class="s4">'What stat do you want to submit? '</span><span class="s1">)</span>
+
+</pre>
+</body>
+</html>
